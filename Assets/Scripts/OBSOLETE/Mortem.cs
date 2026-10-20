@@ -37,31 +37,31 @@ public class Mortem : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void tick()
-    {
-        if (assignedEmployee != null)
-        {
-            research += assignedEmployee.competence;
-            AddResearch(10 + (assignedEmployee.competence * 5));
-            mood += maxMood / 3;
-            mood = Mathf.Clamp(mood, 0, maxMood);
-            assignedEmployee.AddCompetence(0.15f * difficulty);
-            assignedEmployee.SetPhysHealth(-Random.Range(minPhysDamage, maxPhysDamage));
-            assignedEmployee.SetMentHealth(-Random.Range(minMentDamage, maxMentDamage));
-            assignedEmployee.ResetSnap();
-            Unassign();
-        }
-        else
-        {
-            if (mood < maxMood / 3)
-            {
-                AddResearch(-(maxResearch / 5));
-            }
-            mood--;
-            mood = Mathf.Clamp(mood, 0, maxMood);
-        }
-        UpdateMood();
-    }
+    // public void tick()
+    // {
+    //     if (assignedEmployee != null)
+    //     {
+    //         research += assignedEmployee.competence;
+    //         AddResearch(10 + (assignedEmployee.competence * 5));
+    //         mood += maxMood / 3;
+    //         mood = Mathf.Clamp(mood, 0, maxMood);
+    //         assignedEmployee.AddCompetence(0.15f * difficulty);
+    //         assignedEmployee.SetPhysHealth(-Random.Range(minPhysDamage, maxPhysDamage));
+    //         assignedEmployee.SetMentHealth(-Random.Range(minMentDamage, maxMentDamage));
+    //         assignedEmployee.ResetSnap();
+    //         Unassign();
+    //     }
+    //     else
+    //     {
+    //         if (mood < maxMood / 3)
+    //         {
+    //             AddResearch(-(maxResearch / 5));
+    //         }
+    //         mood--;
+    //         mood = Mathf.Clamp(mood, 0, maxMood);
+    //     }
+    //     UpdateMood();
+    // }
 
     public void AddResearch(float newResearch)
     {

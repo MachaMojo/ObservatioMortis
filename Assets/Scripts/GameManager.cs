@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     //     public Employee employeeScript;
     // }
     //public List<EmployeeData> startingEmployees = new List<EmployeeData>();
-    //[SerializeField] private List<GameObject> startingEmployees = new List<GameObject>();
+    // public List<GameObject> startingEmployees = new List<GameObject>();
     public List<Employee> employeeRoster = new List<Employee>();
     public List<MortemBase> mortemRoster = new List<MortemBase>();
     public Employee currentEmployee;
@@ -65,10 +65,12 @@ public class GameManager : MonoBehaviour
 
     public void AddEmployeeToDialogue()
     {
-        DialogueManager.Instance.GetCurrentStory.variablesState["empPhysHealth"] 
-        = currentEmployee.physHealth * (0.5f + (currentEmployee.competence * 0.25f));
-        DialogueManager.Instance.GetCurrentStory.variablesState["empMentHealth"] 
-        = currentEmployee.mentHealth * (0.5f + (currentEmployee.competence * 0.25f));
+        // DialogueManager.Instance.GetCurrentStory.variablesState["empPhysHealth"] 
+        // = currentEmployee.physHealth * (0.5f + (currentEmployee.competence * 0.25f));
+        // DialogueManager.Instance.GetCurrentStory.variablesState["empMentHealth"] 
+        // = currentEmployee.mentHealth * (0.5f + (currentEmployee.competence * 0.25f));
+
+        // TODO: UPDATE THIS
     }
 
     public void QueueContainment()
@@ -98,7 +100,7 @@ public class GameManager : MonoBehaviour
 
     public void YEET()
     {
-            foreach (Employee employee in employeeRoster)
+        foreach (Employee employee in employeeRoster)
         {
             if (employee != currentEmployee)
             {

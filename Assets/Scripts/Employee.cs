@@ -9,21 +9,22 @@ public class Employee : MonoBehaviour
     public AudioManager audioManager;
     public Vector2 snapPoint;
     public string empName;
-    public float competence = 1;
+    // public float competence = 1;
     private bool inMotion = false;
     public Sprite defaultSprite;
     public Sprite unitSprite;
     public Sprite stressedSprite;
     public Sprite deadSprite;
     private Vector2 startingPoint;
-    public float physHealth, maxPhysHealth;
-    public float mentHealth, maxMentHealth;
+    // public float physHealth, maxPhysHealth;
+    // public float mentHealth, maxMentHealth;
     [SerializeField] public float body, maxBody;
-    [SerializeField] public float mind, maxMind;
+    [SerializeField] public float mind, maxMind, mindResilience = 0;
     [SerializeField] public float heart, maxHeart;
     public bool isDead = false;
+    public bool isInsane = false;
     public GameObject assignedUnit;
-    public GameObject deadEmployee;
+    // public GameObject deadEmployee;
     [SerializeField] private HealthbarUI physHealthbar;
     [SerializeField] private HealthbarUI mentHealthbar;
     [SerializeField] private TextMeshProUGUI rank;
@@ -41,19 +42,23 @@ public class Employee : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         startingPoint = gameObject.transform.position;
         snapPoint = gameObject.transform.position;
-        physHealthbar.SetMaxHealth(maxPhysHealth);
-        mentHealthbar.SetMaxHealth(maxMentHealth);
-        rank.text = "Rank: " + Mathf.RoundToInt(competence);
+        physHealthbar.SetMaxHealth(maxBody);
+        mentHealthbar.SetMaxHealth(maxMind);
+        // rank.text = "Rank: " + Mathf.RoundToInt(competence);
         //GameManager.Instance.employeeRoster.Add(this);
         GetComponent<SpriteRenderer>().sprite = defaultSprite;
     }
-    private void Update()
-    {
-        if (physHealth <= 0 || mentHealth <= 0)
-        {
-            isDead = true;
-        }
-    }
+    // private void Update()
+    // {
+    //     if (body <= 0)
+    //     {
+    //         isDead = true;
+    //     }
+    //     else if (mind <= 0)
+    //     {
+    //         isInsane = true;
+    //     }
+    // }
     public void UpdateSprite()
     {
         GetComponent<SpriteRenderer>().sprite = defaultSprite;
@@ -97,6 +102,8 @@ public class Employee : MonoBehaviour
             ResetSnap();
         }
     }
+
+    
     public void ResetSnap()
     {
         snapPoint = startingPoint;
@@ -121,25 +128,25 @@ public class Employee : MonoBehaviour
             
         }
     }
-    public void AddCompetence(float addedCompetence)
-    {
-        competence += addedCompetence;
-        competence = Mathf.Clamp(competence, 0, 5);
+    // public void AddCompetence(float addedCompetence)
+    // {
+    //     competence += addedCompetence;
+    //     competence = Mathf.Clamp(competence, 0, 5);
 
-        rank.text = "Rank: " + Mathf.RoundToInt(competence);
-    }
+    //     rank.text = "Rank: " + Mathf.RoundToInt(competence);
+    // }
     public void SetPhysHealth(float healthChange)
     {
-        if (healthChange < 0)
-        {
-            healthChange = healthChange * (1.5f - 0.25f * (competence - 1));
-        }
-        physHealth += healthChange;
-        physHealth = Mathf.Clamp(physHealth, 0, maxPhysHealth);
+        // if (healthChange < 0)
+        // {
+        //     healthChange = healthChange * (1.5f - 0.25f * (competence - 1));
+        // }
+        body += healthChange;
+        body = Mathf.Clamp(body, 0, maxBody);
 
-        physHealthbar.SetHealth(physHealth);
+        physHealthbar.SetHealth(body);
 
-        if (physHealth <= 0)
+        if (body <= 0)
         {
             isDead = true;
             GetComponent<SpriteRenderer>().sprite = deadSprite;
@@ -152,24 +159,24 @@ public class Employee : MonoBehaviour
     {
         if (healthChange < 0)
         {
-            healthChange = healthChange * (1.5f - 0.25f * (competence - 1));
+            healthChange = healthChange * (1.0f - 0.12f * mindResilience);
         }
-        mentHealth += healthChange;
-        mentHealth = Mathf.Clamp(mentHealth, 0, maxMentHealth);
+        mind += healthChange;
+        mind = Mathf.Clamp(mind, 0, maxMind);
 
-        mentHealthbar.SetHealth(mentHealth);
+        mentHealthbar.SetHealth(mind);
 
-        if (mentHealth <= 0)
+        if (mind <= 0)
         {
-            isDead = true;
-            GetComponent<SpriteRenderer>().sprite = deadSprite;
+            isInsane = true;
+            GetComponent<SpriteRenderer>().sprite = stressedSprite;
         }
     }
     public void FullRestore()
     {
-        physHealth = maxPhysHealth;
-        mentHealth = maxMentHealth;
-        physHealthbar.SetHealth(physHealth);
-        mentHealthbar.SetHealth(mentHealth);
+        body = maxBody;
+        mind = maxMind;
+        physHealthbar.SetHealth(body);
+        mentHealthbar.SetHealth(mind);
     }
 }

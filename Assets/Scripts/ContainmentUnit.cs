@@ -1,6 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+// using Microsoft.Unity.VisualStudio.Editor;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class ContainmentUnit : MonoBehaviour
 {
@@ -13,6 +16,8 @@ public class ContainmentUnit : MonoBehaviour
     public GameObject employee = null;
     public TextMeshProUGUI label;
     public HealthbarUI researchBar;
+
+    public Image empSprite;
 
     
 
@@ -29,6 +34,15 @@ public class ContainmentUnit : MonoBehaviour
     {
         heart.SetActive(mortem.GetComponent<MortemBase>().realized);
     }
+
+    public void SetupEmp(Employee newEmployee)
+    {
+        empSprite.sprite = newEmployee.defaultSprite;
+        newEmployee.assignedUnit = gameObject;
+        employee = newEmployee.gameObject;
+    }
+
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Employee" && employee == null)

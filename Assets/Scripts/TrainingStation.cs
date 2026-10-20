@@ -29,11 +29,13 @@ public class TrainingStation : MonoBehaviour
     }
     public void tick()
     {
-        if (employee != null)
-        {
-            employee.AddCompetence(1f);
-            Reset();
-        }
+        // TODO: UPDATE FUNCTIONALITY
+
+        // if (employee != null)
+        // {
+        //     employee.AddCompetence(1f);
+        //     Reset();
+        // }
     }
     public void Reset()
     {
