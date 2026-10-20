@@ -10,6 +10,7 @@ public class EntryEmployee : MonoBehaviour
     [SerializeField] private TextMeshProUGUI empName;
     [SerializeField] private TextMeshProUGUI body;
     [SerializeField] private TextMeshProUGUI mind;
+    [SerializeField] private TextMeshProUGUI mindResilience;
     [SerializeField] private TextMeshProUGUI heart;
     public void Setup(Employee employee)
     {
@@ -19,6 +20,7 @@ public class EntryEmployee : MonoBehaviour
         empName.text = employee.empName;
         body.text = employee.body.ToString() + "/" + employee.maxBody.ToString();
         mind.text = SanityCheck(employee);
+        mindResilience.text = ResilienceCheck(employee);
         heart.text = employee.heart.ToString() + "/" + employee.maxHeart.ToString();
     }
 
@@ -43,6 +45,34 @@ public class EntryEmployee : MonoBehaviour
         else
         {
             return "Driven Insane";
+        }
+    }
+
+    private string ResilienceCheck(Employee employee)
+    {
+        if (5 <= employee.mindResilience)
+        {
+            return "Impervious";
+        }
+        else if (4 <= employee.mindResilience && employee.mindResilience < 5)
+        {
+            return "Fortified";
+        }
+        else if (3 <= employee.mindResilience && employee.mindResilience < 4)
+        {
+            return "Resilient";
+        }
+        else if (2 <= employee.mindResilience && employee.mindResilience < 3)
+        {
+            return "Average";
+        }
+        else if (1 <= employee.mindResilience && employee.mindResilience < 2)
+        {
+            return "Weak";
+        }
+        else
+        {
+            return "Fragile";
         }
     }
 }
