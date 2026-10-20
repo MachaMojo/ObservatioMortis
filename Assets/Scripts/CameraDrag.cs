@@ -13,6 +13,12 @@ public class CameraDrag : MonoBehaviour
 
     private Bounds cameraBounds;
     private Vector3 targetPosition;
+    private float zoom;
+    private float zoomMult = 4f;
+
+    private float minZoom = 1.5f, maxZoom = 8f;
+    private float velocity = 0f;
+    private float smoothTime = 0.1f;
 
     void Awake()
     {
@@ -21,17 +27,17 @@ public class CameraDrag : MonoBehaviour
 
     void Start()
     {
-        var height = mainCamera.orthographicSize;
-        var width = height * mainCamera.aspect;
+        zoom = mainCamera.orthographicSize;
+        EstablishBounds();
+    }
 
-        var minX = Globals.WorldBounds.min.x + width;
-        var maxX = Globals.WorldBounds.extents.x - width;
-
-        var minY = Globals.WorldBounds.min.y + height;
-        var maxY = Globals.WorldBounds.extents.y - height;
-
-        cameraBounds = new Bounds();
-        cameraBounds.SetMinMax(new Vector3(minX, minY, 0.0f), new Vector3(maxX, maxY, 0.0f));
+    private void Update()
+    {
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        zoom -= scroll * zoomMult;
+        zoom = Mathf.Clamp(zoom, minZoom, maxZoom);
+        mainCamera.orthographicSize = Mathf.SmoothDamp(mainCamera.orthographicSize, zoom, ref velocity, smoothTime);
+        EstablishBounds();
     }
 
     public void OnDrag(InputAction.CallbackContext ctx)
@@ -63,6 +69,23 @@ public class CameraDrag : MonoBehaviour
         Mathf.Clamp(targetPosition.y, cameraBounds.min.y, cameraBounds.max.y),
         transform.position.z
         );
+    }
+
+    private void EstablishBounds()
+    {
+        var width = zoom * mainCamera.aspect;
+
+        var minX = Globals.WorldBounds.min.x + width;
+        var maxX = Globals.WorldBounds.extents.x - width;
+
+        var minY = Globals.WorldBounds.min.y + zoom;
+        var maxY = Globals.WorldBounds.extents.y - zoom;
+
+        cameraBounds = new Bounds();
+        cameraBounds.SetMinMax(new Vector3(minX, minY, 0.0f), new Vector3(maxX, maxY, 0.0f));
+
+        targetPosition = GetCameraBounds();
+        transform.position = targetPosition;
     }
 
     private Vector3 GetMousePosition() => mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());

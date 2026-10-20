@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class EntryEmployee : MonoBehaviour
 {
     private Employee referenceEmp;
     //public GameObject iconRef;
+    [SerializeField] private Image image;
     [SerializeField] private TextMeshProUGUI empName;
     [SerializeField] private TextMeshProUGUI body;
     [SerializeField] private TextMeshProUGUI mind;
@@ -13,6 +15,7 @@ public class EntryEmployee : MonoBehaviour
     {
         //iconRef.GetComponent<IconDrag>().employee = employee;
         referenceEmp = employee;
+        image.sprite = employee.defaultSprite;
         empName.text = employee.empName;
         body.text = employee.body.ToString() + "/" + employee.maxBody.ToString();
         mind.text = SanityCheck(employee);

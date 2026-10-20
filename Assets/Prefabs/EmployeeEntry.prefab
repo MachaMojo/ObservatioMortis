@@ -922,7 +922,6 @@ GameObject:
   - component: {fileID: 8837687161057546654}
   - component: {fileID: 8838754217773057050}
   - component: {fileID: 3206510608579849099}
-  - component: {fileID: 7555579259698994679}
   m_Layer: 5
   m_Name: EmployeeEntry
   m_TagString: Untagged
@@ -1027,24 +1026,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c1d125f35a42a4aa454574121677e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntryEmployee
+  image: {fileID: 7452694004102512602}
   empName: {fileID: 5762014662527120930}
   body: {fileID: 3377714105577047014}
   mind: {fileID: 7372155607929465144}
   heart: {fileID: 4864712543819006990}
---- !u!114 &7555579259698994679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5147147798049389164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d182e47f38a4a4c4fb02611c712dfbf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DragRepresentation
-  sprite: {fileID: 8223304524495899007, guid: fbf25b74a99d3c84fbe7c97382ddbd6d, type: 3}
-  representation: {fileID: 4629902358077352034, guid: 6fff2e7fa82f5874189e91690763dbcf, type: 3}
 --- !u!1 &5440102233277459610
 GameObject:
   m_ObjectHideFlags: 0
