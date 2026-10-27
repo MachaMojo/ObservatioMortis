@@ -104,6 +104,7 @@ public class MortemBase : MonoBehaviour
         // TODO: UPDATE
 
         //research += newResearch * (0.5f + (employee.competence - 1) * 0.25f);
+        newResearch = newResearch * (0.65f + employee.mindResilience * 0.15f);
         research += newResearch;
         research = Mathf.Clamp(research, 0, maxResearch);
         if (researchBar != null)

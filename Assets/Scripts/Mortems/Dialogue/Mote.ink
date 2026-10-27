@@ -1,8 +1,10 @@
 VAR mood = 0
 VAR maxMood = 0
 VAR studied = false
-VAR empPhysHealth = 0
-VAR empMentHealth = 0
+VAR empName = ""
+VAR body = 0
+VAR mind = 0
+VAR heart = 0
 VAR employeePresent = false
 VAR clean = 0
 
@@ -21,24 +23,24 @@ VAR clean = 0
     }
     -> END
 }
-<>Your employee enters the containment unit. #mortem:moodupdate:0.5 #mortem:spriteupdate:0 
+<>{empName} enters the containment unit. #mortem:moodupdate:0.5 #mortem:spriteupdate:0 
 {
     - mood < (maxMood * 0.4): Mote seems a little bit down, but bounds up to the employee regardless.
     "Finally! Someone in Mote's chamber!"
     "It was getting kinda lonely..."
-    - else: Mote hops up to the employee, barely taller than the employee's knee.
+    - else: Mote hops up to them, barely taller than {empName}'s knee.
     "Yay! Another employee!"
     "Mote is so excited to play with you!"
 }
 {
     - clean == 0: -> BadConditions ->
 }
-How will you proceed?
+How will they proceed?
 + [Check] -> Check
 + [Work] -> Work
 
 === Check ===
-What would you like to check?
+What should be checked?
 + [Mote] -> CheckMortem
 + [The chamber] -> CheckUnit
 
@@ -58,13 +60,13 @@ What would you like to check?
 -> Return
 
 === Return ===
-How will you proceed?
+How will they proceed?
 + [Check] -> Check
 + [Work] -> Work
 
 
 === Work ===
-Which type of work would you like to perform?
+Which type of work should {empName} perform?
 + [Maintenance] -> Maintenance
 + [Understanding] -> Understanding
 + [Empathy] -> Empathy
@@ -72,12 +74,12 @@ Which type of work would you like to perform?
 === Maintenance ===
 {
     - mood < (maxMood * 0.4): <>Mote seems to be shedding a bit more than normal.
-    The employee cleans up the chamber regardless, with Mote seeming extra eager to follow behind them.
+    {empName} cleans up the chamber regardless, with Mote seeming extra eager to follow behind them.
     It almost seems to be trying to help with the process.
-    Is it out of kindness? Or shame? #mortem:research:8 #mortem:clean:0
-    - else: <>The employee cleans Mote's dusty chamber from top to bottom.
-    Mote doesn't leave the employee's side for a moment, constantly attempting to ask about the employee's life.
-    It's impossible for them to resist divulging as they work. #mortem:research:5 #mortem:clean:0
+    Is it out of kindness? Or shame? #mortem:research:8 #mortem:clean:0 #employee:addbody:4
+    - else: <>{empName} cleans Mote's dusty chamber from top to bottom.
+    Mote doesn't leave the employee's side for a moment, constantly attempting to ask about {empName}'s life.
+    It's impossible for them to resist divulging as they work. #mortem:research:5 #mortem:clean:0 #employee:addbody:3
 }
 -> Conclusion
 
@@ -86,12 +88,15 @@ Which type of work would you like to perform?
     - mood < (maxMood * 0.4): <>"Wha?"
     "You're here just to do more research?"
     "T-that's ok! Mote will help how Mote can!"
-    Mote clearly seems disappointed, and only halfhearted helps the employee in their research.
-    Not much gets done. #mortem:research:10 #mortem:moodupdate:-1 #mortem:soil:1.5
+    Mote clearly seems disappointed, and only halfheartedly helps {empName} in their research.
+    Not much gets done. #mortem:research:5 #mortem:moodupdate:-1 #mortem:soil:1.5
     - else: <>"Research on Mote?"
     "Silly human! Mote already told you everything about Mote!"
     "But Mote can always tell you more!"
-    Conversing with Mote allowed the employee to figure out a few of the finer details regarding them. #mortem:research:40 #mortem:moodupdate:-0.3 #mortem:soil:1
+    {
+        - heart >= 60: {empName}'s warm heart helped them find out even more about Mote than normal, encouraging the process. #mortem:research:45 #mortem:moodupdate:-0.2 #mortem:soil:1 #employee:addmindres:0.2
+        - else: Conversing with Mote allowed the employee to figure out a few of the finer details regarding them. #mortem:research:35 #mortem:moodupdate:-0.4 #mortem:soil:1 #employee:addmindres:0.1
+    }
 }
 -> Conclusion
 
@@ -100,21 +105,29 @@ Which type of work would you like to perform?
     - mood < (maxMood * 0.4): <>Even by just offering to play with Mote, their spirits lift drastically. #mortem:moodupdate:5
     "Yay! Yippee! Play with Mote!"
     "Mote's been waiting for so long to play again!"
-    Of all the ways to spend a workday, playing with an excited Mote is perhaps one of the best.
-    The employee's mood lifts almost as much as Mote's does. #employee:mentdamage:-30 #mortem:soil:1
+    {
+        - heart >= 60: Of all the ways to spend a workday, playing with an excited Mote is perhaps one of the best.
+        {empName}'s mood lifts almost as much as Mote's does. #employee:mentdamage:-40 #mortem:soil:1 #employee:adjustheart:8
+        - else: Seeing just how happy Mote is at the play session, {empName}'s spirits lift as well. #employee:mentdamage:-25 #mortem:soil:1 #employee:adjustheart:10
+    }
+    
     - else: <>Mote beams with excitement at the proposal to play. #mortem:moodupdate:5
     "Mote tells Augustus to find out all he can..."
     "...but playing with Mote is just as good!"
-    The play session lifts the moods of both Mote and the employee. #employee:mentdamage:-15 #mortem:soil:1
+    {
+        - heart >= 60: Of all the ways to spend a workday, playing with an excited Mote is perhaps one of the best.
+        {empName}'s mood lifts almost as much as Mote's does. #employee:mentdamage:-30 #mortem:soil:1 #employee:adjustheart:8
+        - else: Seeing just how happy Mote is at the play session, {empName}'s spirits lift as well. #employee:mentdamage:-15 #mortem:soil:1 #employee:adjustheart:8
+    }
 }
 -> Conclusion 
 
 
 === ResearchEvent ===
 "Wait! Before you go today!"
-Mote bounds inbetween the employee and the door, their fuzzy body blocking their path.
+Mote bounds inbetween {empName} and the door, their fuzzy body blocking their path.
 "Mote should tell Augustus something!"
-"...And you too, employee!"
+"...And you too, {empName}!"
 "Sometimes, when you get to know a Mortem well enough,"
 "They might break the normal flow of research and do something totally different!"
 "These times are the BEST! They show who a Mortem really is deep inside!"
@@ -129,7 +142,7 @@ Mote bounds inbetween the employee and the door, their fuzzy body blocking their
 === ResearchThank ===
 "It's all Mote's pleasure!"
 "Mote wants to do all Mote can to help!"
-Mote moves aside to let the employee out, giving them a nuzzle goodbye as they do. #employee:mentdamage:-15 #mortem:moodupdate:1 #mortem:realize:0 #mortem:soil:1
+Mote moves aside to let the employee out, giving them a nuzzle goodbye as they do. #employee:mentdamage:-15 #mortem:moodupdate:1 #mortem:realize:0 #mortem:soil:1 #employee:adjustheart:10
 -> END
 
 === ResearchHow ===
@@ -138,7 +151,7 @@ Mote moves aside to let the employee out, giving them a nuzzle goodbye as they d
 "It can come from something as simple as entering the unit, or doing something specific to that Mortem."
 "Some might be really tough to figure out how to bear their heart, even when you feel like you know everything about them."
 "Not Mote though! Mote will always bear Mote's heart for you, Augustus!"
-"...and you too, person in my chamber!"
+"...and you too, {empName}!"
 "Anything else you wanna ask?"
 + ["Thank you Mote!"] -> ResearchThank
 + ["What happens in one of these moments?"] -> ResearchWhat
@@ -207,7 +220,7 @@ Still, Mote seems insistent.
 Mote beams with pride at the employee's response.
 "Yay! Mote is happy you can trust Mote!"
 "Mote hopes you'll bear lots of other Mortem hearts!"
-Mote moves aside to let the employee out, giving them a nuzzle goodbye as they do. #employee:mentdamage:-15 #mortem:moodupdate:1 #mortem:realize:0 #mortem:soil:1
+Mote moves aside to let the employee out, giving them a nuzzle goodbye as they do. #employee:mentdamage:-15 #mortem:moodupdate:1 #mortem:realize:0 #mortem:soil:1 #employee:adjustheart:10
 -> END
 
 === ResearchLeave ===
@@ -225,7 +238,7 @@ There was no inclination that any harm would come to Mote.
 Regardless, upon the employee continuing their query, Mote only gave the same batch of responses.
 "Don't hurt Mote... Mote just wants to help..."
 Realizing that nothing can be gained from Mote in a state like this, the employee leaves the chamber.
-For once, Mote does not nuzzle them goodbye.
+For once, Mote does not nuzzle them goodbye. #employee:adjustheart:-10
 -> END
 
 
@@ -237,7 +250,7 @@ For once, Mote does not nuzzle them goodbye.
 
 Before the employee can leave, Mote bounds up to them one last time.
 "Mote had so much fun today! Mote hopes you did too!"
-As Mote nuzzles them goodbye, the employee takes solace in the fact that out of every monstrosity in the Observatio, they got to work with Mote. #employee:mentdamage:-15 #mortem:moodupdate:1
+As Mote nuzzles them goodbye, the employee takes solace in the fact that out of every monstrosity in the Observatio, they got to work with Mote. #employee:mentdamage:-15 #mortem:moodupdate:1 #employee:adjustheart:10
 -> END
 
 === BadConditions ===

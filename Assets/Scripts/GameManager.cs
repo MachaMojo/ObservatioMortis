@@ -65,12 +65,14 @@ public class GameManager : MonoBehaviour
 
     public void AddEmployeeToDialogue()
     {
-        // DialogueManager.Instance.GetCurrentStory.variablesState["empPhysHealth"] 
-        // = currentEmployee.physHealth * (0.5f + (currentEmployee.competence * 0.25f));
-        // DialogueManager.Instance.GetCurrentStory.variablesState["empMentHealth"] 
-        // = currentEmployee.mentHealth * (0.5f + (currentEmployee.competence * 0.25f));
-
-        // TODO: UPDATE THIS
+        DialogueManager.Instance.GetCurrentStory.variablesState["body"]
+        = currentEmployee.body;
+        DialogueManager.Instance.GetCurrentStory.variablesState["mind"]
+        = currentEmployee.mind;
+        DialogueManager.Instance.GetCurrentStory.variablesState["heart"]
+        = currentEmployee.heart;
+        DialogueManager.Instance.GetCurrentStory.variablesState["empName"]
+        = currentEmployee.empName;
     }
 
     public void QueueContainment()

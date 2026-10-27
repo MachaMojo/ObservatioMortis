@@ -20,7 +20,7 @@ public class Employee : MonoBehaviour
     // public float mentHealth, maxMentHealth;
     [SerializeField] public float body, maxBody;
     [SerializeField] public float mind, maxMind, mindResilience = 0;
-    [SerializeField] public float heart, maxHeart;
+    [SerializeField] public float heart, maxHeart = 100;
     public bool isDead = false;
     public bool isInsane = false;
     public GameObject assignedUnit;
@@ -125,7 +125,15 @@ public class Employee : MonoBehaviour
             case "physdamage":
                 SetPhysHealth(-num);
                 break;
-            
+            case "addbody":
+                ImproveBody(num);
+                break;
+            case "addmindres":
+                ImproveMind(num);
+                break;
+            case "adjustheart":
+                AdjustHeart(num);
+                break;
         }
     }
     // public void AddCompetence(float addedCompetence)
@@ -135,6 +143,36 @@ public class Employee : MonoBehaviour
 
     //     rank.text = "Rank: " + Mathf.RoundToInt(competence);
     // }
+
+
+    public void ImproveBody(float bodyChange)
+    {
+        maxBody += bodyChange;
+        maxBody = Mathf.Clamp(maxBody, 0, 150);
+        body += bodyChange;
+        body = Mathf.Clamp(body, 0, maxBody);
+    }
+    public void ImproveMind(float mindChange)
+    {
+        mindResilience += mindChange;
+        mindResilience = Mathf.Clamp(mindResilience, 0, 5);
+    }
+    public void AdjustHeart(float heartChange)
+    {
+        if (heartChange < 0 && 50 < heart)
+        {
+            heartChange = heartChange * (100 - heart) / 50;
+            heartChange = Mathf.Clamp(heartChange, 1, 100);
+        }
+        else if (heartChange > 0 && 50 > heart)
+        {
+            heartChange = heartChange * heart / 50;
+            heartChange = Mathf.Clamp(heartChange, 1, 100);            
+        }
+        heart += heartChange;
+        heart = Mathf.Clamp(heart, 0, 100);
+    }
+
     public void SetPhysHealth(float healthChange)
     {
         // if (healthChange < 0)
