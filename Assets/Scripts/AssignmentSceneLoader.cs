@@ -40,6 +40,12 @@ public class AssignmentSceneLoader : MonoBehaviour
             containmentUnits[index].GetComponent<ContainmentUnit>().GetMortSnap();
             index++;
         }
+        // index = 0;
+        // foreach (UnitBase unit in GameManager.Instance.GetAllUnits())
+        // {
+            
+        //     index++;
+        // }
     }
     public void Queue()
     {

@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KillScreen.unity
     guid: a3c3c7e5459931d47b2dcc392907cda0
+  - enabled: 1
+    path: Assets/Scenes/TrainingUnit.unity
+    guid: 8aea4ac1ccaaf034ca03cf6e82012929
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -8,7 +8,7 @@ public class MiniEmpMenu : MonoBehaviour
     [SerializeField] private MiniEntry miniEntryPrefab;
     [SerializeField] private Transform container;
     [SerializeField] private List<Employee> employees = new List<Employee>();
-    public ContainmentUnit attachedUnit;
+    public UnitBase attachedUnit;
     public GameObject opener;
 
     [Serializable]

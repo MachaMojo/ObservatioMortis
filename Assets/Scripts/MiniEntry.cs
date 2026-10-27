@@ -9,9 +9,9 @@ public class MiniEntry : MonoBehaviour
     //public GameObject iconRef;
     [SerializeField] private Image image;
     [SerializeField] private TextMeshProUGUI empName;
-    private ContainmentUnit attachedUnit;
+    private UnitBase attachedUnit;
     private MiniEmpMenu empMenu;
-    public void Setup(Employee employee, ContainmentUnit unit, MiniEmpMenu menu)
+    public void Setup(Employee employee, UnitBase unit, MiniEmpMenu menu)
     {
         //iconRef.GetComponent<IconDrag>().employee = employee;
         referenceEmp = employee;

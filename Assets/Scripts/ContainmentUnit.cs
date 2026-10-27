@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 
-public class ContainmentUnit : MonoBehaviour
+public class ContainmentUnit : UnitBase
 {
     public GameObject empSnap;
     private Vector2 empSnapPoint;
@@ -16,11 +16,7 @@ public class ContainmentUnit : MonoBehaviour
     public GameObject employee = null;
     public TextMeshProUGUI label;
     public HealthbarUI researchBar;
-
     public Image empSprite;
-
-    
-
     // Update is called once per frame
     void Awake()
     {
@@ -35,7 +31,7 @@ public class ContainmentUnit : MonoBehaviour
         heart.SetActive(mortem.GetComponent<MortemBase>().realized);
     }
 
-    public void SetupEmp(Employee newEmployee)
+    public override void SetupEmp(Employee newEmployee)
     {
         empSprite.sprite = newEmployee.defaultSprite;
         newEmployee.assignedUnit = gameObject;

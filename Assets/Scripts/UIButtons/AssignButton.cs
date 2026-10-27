@@ -3,7 +3,7 @@ using UnityEngine;
 public class AssignButton : MonoBehaviour
 {
     public GameObject menu;
-    public ContainmentUnit unit;
+    public UnitBase unit;
     
     private void Start()
     {

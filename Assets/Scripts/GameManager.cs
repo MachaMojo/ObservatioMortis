@@ -20,10 +20,13 @@ public class GameManager : MonoBehaviour
     // public List<GameObject> startingEmployees = new List<GameObject>();
     public List<Employee> employeeRoster = new List<Employee>();
     public List<MortemBase> mortemRoster = new List<MortemBase>();
+    public List<UnitBase> unitRoster = new List<UnitBase>();
     public Employee currentEmployee;
     public MortemBase currentMortem;
+    public UnitBase currentUnit;
     public bool paused = false;
     public Queue<(MortemBase, GameObject)> mortemQueue = new Queue<(MortemBase, GameObject)>();
+    public Queue<(UnitBase, GameObject)> trainingQueue = new Queue<(UnitBase, GameObject)>();
 
 
     private void Awake()
@@ -62,6 +65,7 @@ public class GameManager : MonoBehaviour
     }
     public Employee[] GetAllEmployees() => employeeRoster.ToArray();
     public MortemBase[] GetAllMortems() => mortemRoster.ToArray();
+    public UnitBase[] GetAllUnits() => unitRoster.ToArray();
 
     public void AddEmployeeToDialogue()
     {
@@ -73,15 +77,39 @@ public class GameManager : MonoBehaviour
         = currentEmployee.heart;
         DialogueManager.Instance.GetCurrentStory.variablesState["empName"]
         = currentEmployee.empName;
+        DialogueManager.Instance.GetCurrentStory.variablesState["bodyStrength"]
+        = currentEmployee.maxBody;
+        DialogueManager.Instance.GetCurrentStory.variablesState["mindStrength"]
+        = currentEmployee.mindResilience;
     }
 
     public void QueueContainment()
     {
         if (mortemQueue.Count == 0)
         {
-            SceneManager.LoadScene("RabbitTest");
-            currentEmployee = null;
-            currentMortem = null;
+            if (trainingQueue.Count == 0)
+            {
+                SceneManager.LoadScene("RabbitTest");
+                currentEmployee = null;
+                currentMortem = null;
+                currentUnit = null;
+            }
+            else
+            {
+                currentMortem = null;
+                (UnitBase unit, GameObject emp) = trainingQueue.Dequeue();
+                currentUnit = unit;
+                if (emp != null)
+                {
+                    currentEmployee = emp.GetComponent<Employee>();
+                }
+                else
+                {
+                    currentEmployee = null;
+                }
+                unit.LoadUnit(emp);
+                YEET();
+            }
         }
         else
         {

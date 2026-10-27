@@ -7,6 +7,8 @@ VAR mind = 0
 VAR heart = 0
 VAR empName = ""
 VAR employeePresent = false
+VAR bodyStrength = 0
+VAR mindStrength = 0
 
 -> main 
 
