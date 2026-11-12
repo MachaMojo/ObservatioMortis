@@ -71,13 +71,15 @@ Which type of work should {empName} perform?
         Throughout the process, Mitosis Rabbit occasionally takes a bite or two out of the employee. #employee:physdamage:35 #mortem:moodupdate:-0.5
         ~ body -= 35
         -> check_conditions ->
-        It's only natural. Everything has to eat, after all. #mortem:research:10 #employee:addbody:8
+        It's only natural. Everything has to eat, after all. #mortem:research:10 
+        {empName}'s MAX BODY increased. Their BODY sharply decreased, however. #employee:addbody:8
     }
     - else: <>{empName} cleans the chamber, removing all of the residue that had accumulated on the walls.
     Throughout the process, Mitosis Rabbit occasionally takes a bite or two out of the employee. #employee:physdamage:35 #mortem:moodupdate:-0.5
     ~ body -= 35
     -> check_conditions ->
-    It's only natural. Everything has to eat, after all. #mortem:research:10 #employee:addbody:8
+    It's only natural. Everything has to eat, after all. #mortem:research:10
+    {empName}'s MAX BODY increased. Their BODY sharply decreased, however. #employee:addbody:8
 }
 -> Conclusion
 
@@ -92,9 +94,10 @@ Which type of work should {empName} perform?
         - else: <>{empName} observes Mitosis Rabbit within its false habitat.
         The task is rather banal, as this particular Mortem truly is a simple creature. 
         All it seems to ever do is eat the food provided for it, never leaving a single crumb, then idling the rest of its time away. 
-        To some, this lifestyle is rather enviable. #mortem:research:40 #mortem:moodupdate:-1.2 #employee:mentdamage:15 #employee:addmindres:0.4f
+        To some, this lifestyle is rather enviable. #mortem:research:40 #mortem:moodupdate:-1.2 #employee:mentdamage:15 #employee:addmindres:0.4
         ~ mind -= 15
         -> check_conditions ->
+        {empName}'s DISBELIEF increased. Their MIND decreased, however.
     }
     - else: <>{empName} observes Mitosis Rabbit within its false habitat.
     The task is rather banal, as this particular Mortem truly is a simple creature. 
@@ -102,6 +105,7 @@ Which type of work should {empName} perform?
     To some, this lifestyle is rather enviable. #mortem:research:40 #mortem:moodupdate:-1.2 #employee:mentdamage:15 #employee:addmindres:0.4f
     ~ mind -= 15
     -> check_conditions ->
+    {empName}'s DISBELIEF increased. Their MIND decreased, however.
 }
 -> Conclusion
 
@@ -115,16 +119,19 @@ Which type of work should {empName} perform?
          ~ body -= 30
         -> check_conditions ->
         However, upon realizing that the employee has come bearing heaps of food, that anger quickly fades. #mortem:moodupdate:3
-        Its purpose restored, it makes the fullest use of every single morsel. For a moment, it's easy to forget that it's even a Mortem. #employee:adjustheart:10
+        Its purpose restored, it makes the fullest use of every single morsel. For a moment, it's easy to forget that it's even a Mortem. 
         However, when it follows this up by rapidly dividing into a copy of itself, the employee returns to reality. #mortem:multiply:0 #mortem:spriteupdate:0 #mortem:research:30
+        {empName}'s HEART increased. Their BODY sharply decreased, however. #employee:adjustheart:10
     - else: <>Today, {empName} gives Mitosis Rabbit an extra helping of food. #mortem:moodupdate:3
         It absorbs every last crumb directly into its body, quickly dissolving away into nothingness.
         {
             - heart >= 75: Seeing how pleased the Mortem is with their additional serving, {empName} winds up giving them yet another.
             The sheer amount of food is enough to cause Mitosis Rabbit to split once, even before finishing their third serving. #mortem:multiply:0 #mortem:spriteupdate:0 #mortem:research:20
-            Still, it looks so adorable in its current state that {empName} hardly minds, even as it splits an additional time. #mortem:multiply:0 #mortem:spriteupdate:0 #employee:adjustheart:10
+            Still, it looks so adorable in its current state that {empName} hardly minds, even as it splits an additional time. #mortem:multiply:0 #mortem:spriteupdate:0 
+            {empName}'s HEART increased. #employee:adjustheart:10
             - heart <= 15: Knowing exactly what this Mortem is capable of, {empName} takes away the extra serving just before Mitosis Rabbit eats enough to split. #mortem:moodupdate:-0.8
-            The false rabbit seems disappointed in this development. {empName} doesn't care in the slightest. #employee:adjustheart:-5 #employee:addmindres:0.3f #mortem:research:5
+            The false rabbit seems disappointed in this development. {empName} doesn't care in the slightest. #employee:addmindres:0.3f #mortem:research:5
+            {empName}'s DISBELIEF increased. #employee:addmindres:0.3f
             - else: When the employee has finished giving Mitosis Rabbit its much needed affection, the moment their back is turned, its body writhes and splits. #mortem:multiply:0 #mortem:spriteupdate:0
             Thus, the circle of life continues. #mortem:research:15
         }
@@ -137,24 +144,27 @@ Which type of work should {empName} perform?
         Even so, Mitosis Rabbit doesn't seem to appreciate the gesture. #employee:physdamage:30 #mortem:moodupdate:-1.5
         ~ body -= 30
         -> check_conditions ->
+        {empName}'s BODY sharply decreased.
     - studied:
         -> ResearchEvent
     - 1 <= copies <= 3: <>The employee sets aside one of the Mitosis Rabbits. Whether it was the original or not doesn't matter.
     // ENDED HERE
     { heart >= 65: {empName} hesitates at carrying out the next step. It doesn't feel like these rabbits are doing any actual harm.}
-    { heart >= 65: {empName} Still, {empName} does as they are told.} #employee:adjustheart:-15
+    { heart >= 65: {empName} Still, {empName} does as they are told.}
         With a heaping dose of salt, the other rabbits are quickly removed from this world, their bodies shrivelling up as they expell their contents.
         The copies try their hardest to tear the employee to shreds in response, fighting for their lives. It hurts like hell. #employee:physdamage:55
         ~ body -= 55
         -> check_conditions ->
         Despite everything, as all of this is unfolding, the last one doesn't seem to respond at all. #mortem:moodupdate:2 #mortem:cull:0 
-        It's not going to be culled, of course. Why should it care? #mortem:research:20 #employee:addbody:10
+        It's not going to be culled, of course. Why should it care? #mortem:research:20
+        {empName}'s MAX BODY increased. Their BODY drastically decreased, however. #employee:addbody:10
     - copies == 4: <>The employee sets aside one of the Mitosis Rabbits. Whether it was the original or not doesn't matter.
         They stand their ground as best as they can, dousing the hoard with as much salt as possible.
         It's a herculean task as the mass of Mitosis Rabbits surges against them. Their skin is badly burned in the process, their body nearly torn to complete shreds. #employee:physdamage:70
          ~ body -= 70
         -> check_conditions ->
-        When everything is over, the hoard is dispatched, and the last remaining Mitosis Rabbit happily absorbs the spilt blood. #mortem:moodupdate:3 #mortem:cull:0 #mortem:research:25 #employee:addbody:12
+        When everything is over, the hoard is dispatched, and the last remaining Mitosis Rabbit happily absorbs the spilt blood. #mortem:moodupdate:3 #mortem:cull:0 #mortem:research:25
+        {empName}'s MAX BODY increased. Their BODY drastically decreased, however. #employee:addbody:12
     - else: <>Somehow, there isn't a proper number listed here.
 }
 -> END
@@ -200,6 +210,7 @@ Before the employee can respond, Mitosis Rabbit hops off, giving the employee on
 It goes back to its usual demeanor, not reacting at all as its bretheren are killed. #employee:physdamage:55 #mortem:cull:0
     ~ body -= 55
     -> check_conditions ->
+{empName}'s MAX BODY increased. Their BODY drastically decreased, however. #employee:addbody:10
 A greater understanding of Mitosis Rabbit has been acquired. #mortem:realize:0
 -> END
 
@@ -215,7 +226,7 @@ Every single nerve in their body suddenly urges them to submit themselves as not
 
 
 === ResearchExist===
-The rabbit's ears fold down, its eyes expressing a modicum of sadness. #employee:adjustheart:-10
+The rabbit's ears fold down, its eyes expressing a modicum of sadness.
 "That seems quite cruel," its demeanor suggests. "I'm only doing exactly what you humans do."
 + ["No you aren't."] -> ResearchDenial
 + ["Correct. It's the fact that you're too efficient at it."] -> ResearchTooEfficient
@@ -235,6 +246,7 @@ The rabbit waits for a response, but receives none. It seems frustrated by this.
 Mitosis Rabbit hops off. It goes back to its usual demeanor, not reacting at all as its bretheren are killed. #employee:physdamage:55 #mortem:cull:0
     ~ body -= 55
     -> check_conditions ->
+{empName}'s MAX BODY increased. Their BODY drastically decreased, however. #employee:addbody:10
 A breakthrough seems to be in sight, but has not yet been reached.
 -> END
 
@@ -254,11 +266,12 @@ As Mitosis Rabbit seems to realize its incongruous logic, it hops off, awaiting 
 It goes back to its usual demeanor, not reacting at all as its bretheren are killed. #employee:physdamage:55 #mortem:cull:0
     ~ body -= 55
     -> check_conditions ->
+{empName}'s MAX BODY increased. Their BODY drastically decreased, however. #employee:addbody:10
 A greater understanding of Mitosis Rabbit has been acquired. #mortem:realize:0
 -> END
 
 === ResearchEnough ===
-It tilts its head. "Enough?" it seems to question. #employee:adjustheart:-5
+It tilts its head. "Enough?" it seems to question.
 "But there's no such thing. My whole purpose is to make more of me."
 "That's everyone's purpose, isn't it?"
 + ["Yes"] -> ResearchYes
@@ -278,6 +291,7 @@ The answer seems to mentally stump Mitosis Rabbit. Unable to parse this quandry,
 It goes back to its usual demeanor, not reacting at all as its bretheren are killed. #employee:physdamage:55 #mortem:cull:0
     ~ body -= 55
     -> check_conditions ->
+{empName}'s MAX BODY increased. Their BODY drastically decreased, however. #employee:addbody:10
 A greater understanding of Mitosis Rabbit has been acquired. #mortem:realize:0
 -> END
 
@@ -286,11 +300,13 @@ The curious rabbit receives no response from the employee. Frustrated, it eventu
 It goes back to its usual demeanor, not reacting at all as its bretheren are killed. #employee:physdamage:55 #mortem:cull:0
     ~ body -= 55
     -> check_conditions ->
+{empName}'s MAX BODY increased. Their BODY drastically decreased, however. #employee:addbody:10
 A breakthrough seems to be in sight, but has not yet been reached.
 -> END
 
 === Death ===
-Mitosis Rabbit happily enjoys their unexpected meal. #game:kill:0 #mortem:moodupdate:3 #mortem:kill:0
+Mitosis Rabbit happily enjoys their unexpected meal. #game:kill:0 #mortem:moodupdate:3 #mortem:kill:0 #employee:die:0
+{empName} HAS DIED
 -> END
 
 === MentalDeath ===
@@ -304,8 +320,8 @@ Their knees buckle as they fall forward towards Mitosis Rabbit, their body now a
 
 === Conclusion ===
 {
-    - copies == 0: As the employee leaves, Mitosis Rabbit seems to shift in frustration. It remains solitary today. #mortem:moodupdate:-0.5
-    - else: As the employee leaves, Mitosis Rabbit splits once again, continuing its dominance over the sway of life. #mortem:multiply:0 #mortem:spriteupdate:0
+    - copies == 0: {employeePresent: As the employee leaves, | Left alone, }Mitosis Rabbit seems to shift in frustration. It remains solitary today. #mortem:moodupdate:-0.5
+    - else: {employeePresent: As the employee leaves, | Unobserved, }Mitosis Rabbit splits once again, continuing its dominance over the sway of life. #mortem:multiply:0 #mortem:spriteupdate:0
 }
 -> END
 

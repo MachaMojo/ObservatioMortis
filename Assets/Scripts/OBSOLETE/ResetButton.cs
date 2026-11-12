@@ -14,7 +14,7 @@ public class ResetButton : MonoBehaviour
         Employee[] employees = FindObjectsByType(typeof(Employee), FindObjectsSortMode.InstanceID) as Employee[];
         foreach (Employee employee in employees)
         {
-            employee.ResetSnap();
+            // employee.ResetSnap();
         }
         TrainingStation[] trainings = FindObjectsByType(typeof(TrainingStation), FindObjectsSortMode.InstanceID) as TrainingStation[];
         foreach (TrainingStation station in trainings)

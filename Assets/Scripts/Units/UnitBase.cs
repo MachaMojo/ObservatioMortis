@@ -15,4 +15,8 @@ public class UnitBase : MonoBehaviour
     {
         
     }
+    public virtual void Reset()
+    {
+        
+    }
 }

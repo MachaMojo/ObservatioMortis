@@ -12,6 +12,7 @@ public class EmployeeMenu : MonoBehaviour
     {
         menu.SetActive(true);
         gameObject.SetActive(false);
+        AudioManager.Instance.Play(AudioManager.Instance.select);
     }
 
 }

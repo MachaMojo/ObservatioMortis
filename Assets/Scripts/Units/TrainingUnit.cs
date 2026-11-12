@@ -7,24 +7,26 @@ using UnityEngine.SceneManagement;
 
 public class TrainingUnit : UnitBase
 {
-    private static TrainingUnit currentInstance;
+    // private static TrainingUnit currentInstance;
     public GameObject empSnap;
     private Vector2 empSnapPoint;
     public GameObject employee = null;
-    public Image empSprite;
+    [SerializeField] private Sprite emptySprite;
+    public Image employeeSprite;
     public TextAsset inkJSON;
     void Awake()
     {
-        if (currentInstance != null && currentInstance.name == name)
+        GameObject existingObject = GameObject.Find(gameObject.name);
+        if (existingObject != null && existingObject != gameObject)
         {
-            Destroy(currentInstance.gameObject);
+            Destroy(gameObject);
+            return;
         }
-        currentInstance = this;
         empSnapPoint = empSnap.transform.position;
         // GameObject existingObject = GameObject.Find(gameObject.name);
         // if (existingObject != null && existingObject != gameObject)
         // {
-        //     Destroy(gameObject);
+        //     Destroy(existingObject.gameObject);
         //     return;
         // }
         DontDestroyOnLoad(gameObject);
@@ -32,7 +34,7 @@ public class TrainingUnit : UnitBase
 
     public override void SetupEmp(Employee newEmployee)
     {
-        empSprite.sprite = newEmployee.defaultSprite;
+        employeeSprite.sprite = newEmployee.defaultSprite;
         newEmployee.assignedUnit = gameObject;
         employee = newEmployee.gameObject;
         GameManager.Instance.trainingQueue.Enqueue((this, employee));
@@ -51,6 +53,16 @@ public class TrainingUnit : UnitBase
     {
         DialogueManager.Instance.EnterDialogueMode(inkJSON);
         GameManager.Instance.AddEmployeeToDialogue();
+    }
+
+    public override void Reset()
+    {
+        if (employee != null && employee.GetComponent<Employee>() != null)
+        {
+            employeeSprite.sprite = emptySprite;
+            employee.GetComponent<Employee>().assignedUnit = null;
+        }
+        employee = null;
     }
 
     public Vector2 GetEmpSnap() => empSnapPoint;

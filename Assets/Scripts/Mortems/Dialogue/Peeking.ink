@@ -70,11 +70,13 @@ Which type of work should {empName} perform?
     Still, Peeking's apparent omnipresence just out of view takes a mental toll. #mortem:research:10 #employee:mentdamage:25 #mortem:moodupdate:-0.5 #employee:addbody:5
     ~ mind -= 25
     -> check_conditions ->
+    {empName}'s MAX BODY slightly increased. Their MIND decreased, however.
     - else: <>{empName} ensures that Peeking's rock and the rest of the chamber are in pristine condition.
     Peeking behaves themselves well today, doing very little to tempt the employee to peer around the other side of the rock.
     Although its presence can be felt, it only acts as a minor stressor. #mortem:research:5 #employee:mentdamage:5 #employee:addbody:5
     ~ mind -= 5
     -> check_conditions ->
+    {empName}'s MAX BODY slightly increased. Their MIND slightly decreased, however.
 }
 -> END
 
@@ -83,13 +85,14 @@ Which type of work should {empName} perform?
     - mood < (maxMood * 0.4): <>The employee barely has a chance to conduct their research before Peeking seizes upon their curiousity. #employee:scare:0 
     -> Death
     - peek: <>{empName} voluntarily uses this time to investigate the nature and living of Peeking.
-    Foolishly, they stray far to close to the rock, all too consumed by fervant curiousity.
+    Foolishly, they stray far too close to the rock, all too consumed by fervant curiousity.
     To discover the full form of Peeking is to discover oblivion.
     -> Death
     - else: <>Devoid of Peeking's omnipresent eyes, {empName} is free to conduct a full analysis of Peeking and their chamber.
     It is impossible to discern Peeking's full form without straying too close to the backside of the rock.
     Even so, the scraps it leaves behind and the claw marks it has left about its environment tell {empName} more than enough.
-    It is unlikely Peeking will always be this kind to such wanton curiousity. #mortem:research:65 #mortem:moodupdate:-1 #employee:addmindres:0.45
+    It is unlikely Peeking will always be this kind to such wanton curiousity. #mortem:research:65 #mortem:moodupdate:-1
+    {empName}'s DISBELIEF greatly increased. #employee:addmindres:0.45
 }
 -> END
 
@@ -100,12 +103,14 @@ Which type of work should {empName} perform?
     Peeking still attempts to claw at them, drawing a not-insignificant amount of blood. #employee:physdamage:30
         ~ body -= 30
         -> check_conditions ->
-    It seems to have satiated Peeking's need to punish curiousity. #mortem:moodupdate:2 #mortem:research:15 #employee:addbody:2 #employee:adjustheart:-10
+    It seems to have satiated Peeking's need to punish curiousity. #mortem:moodupdate:2 #mortem:research:15 
+    {empName}'s MAX BODY increased by a miniscule amount. Their BODY and HEART decreased, however. #employee:addbody:2 #employee:adjustheart:-10
     - peek: <>Remaining careful, {empName} strays closer to the rock than normal, feigning a desire to see Peeking in their full form.
     Eyes brimming with bloodlust, Peeking meets this false curiousity with fang and claw, only for the employee to remain barely out of reach.
-    The game of nondiscovery seems to be one that Peeking enjoys. The same cannot be said of the employee. #employee:mentdamage:15 #mortem:moodupdate:1.5 #mortem:research:10 #employee:adjustheart:-5
+    The game of nondiscovery seems to be one that Peeking enjoys. The same cannot be said of the employee, especially after a few close calls. #employee:physdamage:15 #mortem:moodupdate:1.5 #mortem:research:10
     ~ body -= 15
     -> check_conditions ->
+    {empName}'s BODY and HEART descresed. #employee:adjustheart:-10
     - else: <>{empName} strays close enough to Peeking's rock to tempt it out, faking an interest in straying even further.
     Peeking does not emerge. It lies in wait, tempting the employee to stray even closer to gain a response.
     {
@@ -113,8 +118,10 @@ Which type of work should {empName} perform?
         This turns out to be a painful mistake, as an errant claw swipe winds up leaving a huge gash on {empName}'s arm. #employee:physdamage:30
         ~ body -= 30
         -> check_conditions ->
-        A coarse laugh can be heard from behind the rock. #mortem:moodupdate:1 #employee:addbody:1
+        A coarse laugh can be heard from behind the rock. #mortem:moodupdate:1 #employee:addbody:2
+        {empName}'s MAX BODY increased by a miniscule amount. Their BODY and HEART decreased, however. #employee:adjustheart:-10
         - else: The employee does not oblige. #mortem:moodupdate:0.5
+        
     }
 }
 -> END
@@ -283,7 +290,8 @@ Peeking's voice breaks in desperation.
 + [Remain silent] -> ResearchScaredSilent
 
 === Death ===
-{empName}'s mangled corpse is swiftly dragged behind the rock, never to be seen again. #game:kill:0 #mortem:moodupdate:5 #mortem:kill:0
+A mangled corpse is swiftly dragged behind the rock, never to be seen again. #game:kill:0 #mortem:moodupdate:5 #mortem:kill:0 #employee:die:0
+{empName} HAS DIED.
 -> END
 
 === MentalDeath ===

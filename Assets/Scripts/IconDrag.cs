@@ -19,7 +19,7 @@ public class IconDrag : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     {
         if (!employee.isDead) {
             distance = Camera.main.ScreenToWorldPoint(eventData.position) - transform.position;
-            employee.Moving();
+            // employee.Moving();
         }
     }
     public void OnDrag(PointerEventData eventData)
@@ -34,6 +34,6 @@ public class IconDrag : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        employee.Stopped();
+        // employee.Stopped();
     }
 }

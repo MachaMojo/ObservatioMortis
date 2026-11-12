@@ -15,5 +15,6 @@ public class AssignButton : MonoBehaviour
         menu.GetComponent<MiniEmpMenu>().attachedUnit = unit;
         menu.GetComponent<MiniEmpMenu>().CreateEntries();
         gameObject.SetActive(false);
+        AudioManager.Instance.Play(AudioManager.Instance.select);
     }
 }

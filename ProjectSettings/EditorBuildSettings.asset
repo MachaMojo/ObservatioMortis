@@ -20,6 +20,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TrainingUnit.unity
     guid: 8aea4ac1ccaaf034ca03cf6e82012929
+  - enabled: 1
+    path: Assets/Scenes/Acquisition.unity
+    guid: 65d7ecd763869ba4e9bb70be16ec5178
+  - enabled: 1
+    path: Assets/Scenes/NewEmp.unity
+    guid: 84edd4f154d726747a4541713b6f645a
+  - enabled: 1
+    path: Assets/Scenes/MoteIntro.unity
+    guid: c287c436fd7443043a7492cf40c73191
+  - enabled: 1
+    path: Assets/Scenes/MoteAcqIntro.unity
+    guid: 65bf3423d9b067f46ae7592cd5579cf4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

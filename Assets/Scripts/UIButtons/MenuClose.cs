@@ -9,5 +9,6 @@ public class MenuClose : MonoBehaviour
     {
         menu.SetActive(false);
         opener.SetActive(true);
+        AudioManager.Instance.Play(AudioManager.Instance.close);
     }
 }

@@ -8,20 +8,20 @@ public class AssignmentSceneLoader : MonoBehaviour
     void Start()
     {
         int index = 0;
-        foreach (Employee employee in GameManager.Instance.GetAllEmployees())
-        {
-            employee.transform.position = empSpawns[index].transform.position;
-            if (employee.isDead)
-            {
-                employee.GetComponent<SpriteRenderer>().sprite = employee.deadSprite;
-            }
-            else
-            {
-                employee.GetComponent<SpriteRenderer>().sprite = employee.defaultSprite;
-            }
-            index++;
-        }
-        index = 0;
+        // foreach (Employee employee in GameManager.Instance.GetAllEmployees())
+        // {
+        //     // employee.transform.position = empSpawns[index].transform.position;
+        //     if (employee.isDead)
+        //     {
+        //         employee.GetComponent<SpriteRenderer>().sprite = employee.deadSprite;
+        //     }
+        //     else
+        //     {
+        //         employee.GetComponent<SpriteRenderer>().sprite = employee.defaultSprite;
+        //     }
+        //     index++;
+        // }
+        // index = 0;
         foreach (MortemBase mortem in GameManager.Instance.GetAllMortems())
         {
             containmentUnits[index].GetComponent<ContainmentUnit>().mortem = mortem.gameObject;
@@ -41,11 +41,10 @@ public class AssignmentSceneLoader : MonoBehaviour
             index++;
         }
         // index = 0;
-        // foreach (UnitBase unit in GameManager.Instance.GetAllUnits())
-        // {
-            
-        //     index++;
-        // }
+        foreach (UnitBase unit in GameManager.Instance.GetAllUnits())
+        {
+            unit.Reset();
+        }
     }
     public void Queue()
     {

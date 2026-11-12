@@ -11,7 +11,8 @@ public class EntryEmployee : MonoBehaviour
     [SerializeField] private TextMeshProUGUI body;
     [SerializeField] private TextMeshProUGUI mind;
     [SerializeField] private TextMeshProUGUI mindResilience;
-    [SerializeField] private TextMeshProUGUI heart;
+    // [SerializeField] private TextMeshProUGUI heart;
+    [SerializeField] private HealthbarUI heartbar;
     public void Setup(Employee employee)
     {
         //iconRef.GetComponent<IconDrag>().employee = employee;
@@ -21,7 +22,9 @@ public class EntryEmployee : MonoBehaviour
         body.text = employee.body.ToString() + "/" + employee.maxBody.ToString();
         mind.text = SanityCheck(employee);
         mindResilience.text = ResilienceCheck(employee);
-        heart.text = employee.heart.ToString() + "/" + employee.maxHeart.ToString();
+        // heart.text = employee.heart.ToString() + "/" + employee.maxHeart.ToString();
+        heartbar.SetMaxHealth(100);
+        heartbar.SetHealth(employee.heart);
     }
 
     private string SanityCheck(Employee employee)

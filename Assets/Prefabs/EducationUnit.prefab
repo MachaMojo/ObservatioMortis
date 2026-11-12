@@ -95,7 +95,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TrainingUnit
   empSnap: {fileID: 4420164130719224087}
   employee: {fileID: 0}
-  empSprite: {fileID: 1440895622097974711}
+  emptySprite: {fileID: 21300000, guid: 6da23a5aa9ede5f49b2e25aa3bd6c966, type: 3}
+  employeeSprite: {fileID: 1440895622097974711}
   inkJSON: {fileID: 4900000, guid: 5f9fb642164ac5741a31234f60da9bff, type: 3}
 --- !u!1 &2754771940191439747
 GameObject:
@@ -649,8 +650,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

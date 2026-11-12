@@ -78,10 +78,12 @@ Which type of work should {empName} perform?
     - mood < (maxMood * 0.4): <>Mote seems to be shedding a bit more than normal.
     {empName} cleans up the chamber regardless, with Mote seeming extra eager to follow behind them.
     It almost seems to be trying to help with the process.
-    Is it out of kindness? Or shame? #mortem:research:8 #mortem:clean:0 #employee:addbody:4
+    Is it out of kindness? Or shame? #mortem:research:8 #mortem:clean:0
+    {empName}'s MAX BODY increased a miniscule amount. #employee:addbody:4
     - else: <>{empName} cleans Mote's dusty chamber from top to bottom.
     Mote doesn't leave the employee's side for a moment, constantly attempting to ask about {empName}'s life.
-    It's impossible for them to resist divulging as they work. #mortem:research:5 #mortem:clean:0 #employee:addbody:3
+    It's impossible for them to resist divulging as they work. #mortem:research:5 #mortem:clean:0
+    {empName}'s MAX BODY increased a miniscule amount. #employee:addbody:3
 }
 -> Conclusion
 
@@ -96,8 +98,10 @@ Which type of work should {empName} perform?
     "Silly human! Mote already told you everything about Mote!"
     "But Mote can always tell you more!"
     {
-        - heart >= 60: {empName}'s warm heart helped them find out even more about Mote than normal, encouraging the process. #mortem:research:45 #mortem:moodupdate:-0.2 #mortem:soil:1 #employee:addmindres:0.2
-        - else: Conversing with Mote allowed the employee to figure out a few of the finer details regarding them. #mortem:research:35 #mortem:moodupdate:-0.4 #mortem:soil:1 #employee:addmindres:0.1
+        - heart >= 60: {empName}'s warm heart helped them find out even more about Mote than normal, encouraging the process. #mortem:research:45 #mortem:moodupdate:-0.2 #mortem:soil:1 
+        {empName}'s DISBELIEF increased slightly. #employee:addmindres:0.2
+        - else: Conversing with Mote allowed the employee to figure out a few of the finer details regarding them. #mortem:research:35 #mortem:moodupdate:-0.4 #mortem:soil:1
+        {empName}'s DISBELIEF increased by a miniscule amount. #employee:addmindres:0.1
     }
 }
 -> Conclusion
@@ -109,8 +113,9 @@ Which type of work should {empName} perform?
     "Mote's been waiting for so long to play again!"
     {
         - heart >= 60: Of all the ways to spend a workday, playing with an excited Mote is perhaps one of the best.
-        {empName}'s mood lifts almost as much as Mote's does. #employee:mentdamage:-40 #mortem:soil:1 #employee:adjustheart:8
-        - else: Seeing just how happy Mote is at the play session, {empName}'s spirits lift as well. #employee:mentdamage:-25 #mortem:soil:1 #employee:adjustheart:10
+        {empName}'s HEART increased. Their MIND was also greatly restored. #employee:mentdamage:-40 #mortem:soil:1 #employee:adjustheart:10
+        - else: Seeing just how happy Mote is at the play session, {empName}'s spirits lift as well. 
+        {empName}'s HEART increased. Their MIND was also partially restored.#employee:mentdamage:-25 #mortem:soil:1 #employee:adjustheart:10
     }
     
     - else: <>Mote beams with excitement at the proposal to play. #mortem:moodupdate:5
@@ -118,8 +123,9 @@ Which type of work should {empName} perform?
     "...but playing with Mote is just as good!"
     {
         - heart >= 60: Of all the ways to spend a workday, playing with an excited Mote is perhaps one of the best.
-        {empName}'s mood lifts almost as much as Mote's does. #employee:mentdamage:-30 #mortem:soil:1 #employee:adjustheart:8
-        - else: Seeing just how happy Mote is at the play session, {empName}'s spirits lift as well. #employee:mentdamage:-15 #mortem:soil:1 #employee:adjustheart:8
+        {empName}'s HEART increased. Their MIND was also greatly restored. #employee:mentdamage:-40 #mortem:soil:1 #employee:adjustheart:10
+        - else: Seeing just how happy Mote is at the play session, {empName}'s spirits lift as well. 
+        {empName}'s HEART increased. Their MIND was also partially restored.#employee:mentdamage:-25 #mortem:soil:1 #employee:adjustheart:10
     }
 }
 -> Conclusion 
@@ -144,7 +150,9 @@ Mote bounds inbetween {empName} and the door, their fuzzy body blocking their pa
 === ResearchThank ===
 "It's all Mote's pleasure!"
 "Mote wants to do all Mote can to help!"
-Mote moves aside to let the employee out, giving them a nuzzle goodbye as they do. #employee:mentdamage:-15 #mortem:moodupdate:1 #mortem:realize:0 #mortem:soil:1 #employee:adjustheart:10
+Mote moves aside to let the employee out, giving them a nuzzle goodbye as they do.
+{empName}'s HEART increased. Their MIND was also partially restored. #employee:mentdamage:-15 #mortem:moodupdate:1 #mortem:soil:1 #employee:adjustheart:10
+A greater understanding of Mote has been acquired... somewhat. #mortem:realize:0
 -> END
 
 === ResearchHow ===
@@ -222,14 +230,18 @@ Still, Mote seems insistent.
 Mote beams with pride at the employee's response.
 "Yay! Mote is happy you can trust Mote!"
 "Mote hopes you'll bear lots of other Mortem hearts!"
-Mote moves aside to let the employee out, giving them a nuzzle goodbye as they do. #employee:mentdamage:-15 #mortem:moodupdate:1 #mortem:realize:0 #mortem:soil:1 #employee:adjustheart:10
+Mote moves aside to let the employee out, giving them a nuzzle goodbye as they do.
+{empName}'s HEART increased. Their MIND was also partially restored. #employee:mentdamage:-15 #mortem:moodupdate:1 #mortem:soil:1 #employee:adjustheart:10
+A greater understanding of Mote has been acquired... somewhat. #mortem:realize:0
 -> END
 
 === ResearchLeave ===
 The employee apologizes to Mortem for the inquiry. Mote perks back up, eager to reassure them.
 "Don't worry! Mote will help all Mote can!"
 "And when Mote learns something, Mote will make sure you learn it too!"
-Mote moves aside to let the employee out, giving them a somewhat timid nuzzle goodbye as they do. #employee:mentdamage:-8 #mortem:moodupdate:0.5 #mortem:realize:0 #mortem:soil:2
+Mote moves aside to let the employee out, giving them a somewhat timid nuzzle goodbye as they do. 
+{empName}'s MIND was slightly restored. #employee:mentdamage:-8 #mortem:moodupdate:0.5 #mortem:soil:2
+A greater understanding of Mote has been acquired... somewhat. #mortem:realize:0
 -> END
 
 === ResearchPress ===
@@ -240,7 +252,9 @@ There was no inclination that any harm would come to Mote.
 Regardless, upon the employee continuing their query, Mote only gave the same batch of responses.
 "Don't hurt Mote... Mote just wants to help..."
 Realizing that nothing can be gained from Mote in a state like this, the employee leaves the chamber.
-For once, Mote does not nuzzle them goodbye. #employee:adjustheart:-10
+For once, Mote does not nuzzle them goodbye. 
+{empName}'s HEART decreased. #employee:adjustheart:-10
+A greater understanding of Mote has been acquired. #mortem:realize:0
 -> END
 
 
@@ -252,7 +266,8 @@ For once, Mote does not nuzzle them goodbye. #employee:adjustheart:-10
 
 Before the employee can leave, Mote bounds up to them one last time.
 "Mote had so much fun today! Mote hopes you did too!"
-As Mote nuzzles them goodbye, the employee takes solace in the fact that out of every monstrosity in the Observatio, they got to work with Mote. #employee:mentdamage:-15 #mortem:moodupdate:1 #employee:adjustheart:10
+As Mote nuzzles them goodbye, the employee takes solace in the fact that out of every monstrosity in the Observatio, they got to work with Mote. 
+{empName}'s HEART increased. Their MIND was also partially restored. #employee:mentdamage:-15 #mortem:moodupdate:1 #employee:adjustheart:10
 -> END
 
 === BadConditions ===

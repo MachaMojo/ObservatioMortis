@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 
 public class MiniEntry : MonoBehaviour
 {
@@ -26,7 +25,12 @@ public class MiniEntry : MonoBehaviour
         if (referenceEmp.assignedUnit == null)
         {
             attachedUnit.SetupEmp(referenceEmp);
+            AudioManager.Instance.Play(AudioManager.Instance.lockin);
             empMenu.Close();
+        }
+        else
+        {
+            AudioManager.Instance.Play(AudioManager.Instance.invalid);
         }
     }
 }

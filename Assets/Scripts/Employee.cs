@@ -6,16 +6,15 @@ using UnityEngine;
 
 public class Employee : MonoBehaviour
 {
-    public AudioManager audioManager;
-    public Vector2 snapPoint;
+    // public Vector2 snapPoint;
     public string empName;
     // public float competence = 1;
-    private bool inMotion = false;
+    // private bool inMotion = false;
     public Sprite defaultSprite;
     public Sprite unitSprite;
     public Sprite stressedSprite;
     public Sprite deadSprite;
-    private Vector2 startingPoint;
+    // private Vector2 startingPoint;
     // public float physHealth, maxPhysHealth;
     // public float mentHealth, maxMentHealth;
     [SerializeField] public float body, maxBody;
@@ -25,28 +24,29 @@ public class Employee : MonoBehaviour
     public bool isInsane = false;
     public GameObject assignedUnit;
     // public GameObject deadEmployee;
-    [SerializeField] private HealthbarUI physHealthbar;
-    [SerializeField] private HealthbarUI mentHealthbar;
-    [SerializeField] private TextMeshProUGUI rank;
+    // [SerializeField] private HealthbarUI physHealthbar;
+    // [SerializeField] private HealthbarUI mentHealthbar;
+    // [SerializeField] private TextMeshProUGUI rank;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        GameObject existingObject = GameObject.Find(gameObject.name);
-        if (existingObject != null && existingObject != gameObject)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        // GameObject existingObject = GameObject.Find(gameObject.name);
+        // if (existingObject != null && existingObject != gameObject)
+        // {
+        //     Destroy(gameObject);
+        //     return;
+        // }
+
 
         DontDestroyOnLoad(gameObject);
-        startingPoint = gameObject.transform.position;
-        snapPoint = gameObject.transform.position;
-        physHealthbar.SetMaxHealth(maxBody);
-        mentHealthbar.SetMaxHealth(maxMind);
+        // startingPoint = gameObject.transform.position;
+        // snapPoint = gameObject.transform.position;
+        // physHealthbar.SetMaxHealth(maxBody);
+        // mentHealthbar.SetMaxHealth(maxMind);
         // rank.text = "Rank: " + Mathf.RoundToInt(competence);
-        //GameManager.Instance.employeeRoster.Add(this);
-        GetComponent<SpriteRenderer>().sprite = defaultSprite;
+        // GameManager.Instance.employeeRoster.Add(this);
+        // GetComponent<SpriteRenderer>().sprite = defaultSprite;
     }
     // private void Update()
     // {
@@ -59,59 +59,59 @@ public class Employee : MonoBehaviour
     //         isInsane = true;
     //     }
     // }
-    public void UpdateSprite()
-    {
-        GetComponent<SpriteRenderer>().sprite = defaultSprite;
-    }
+    // public void UpdateSprite()
+    // {
+    //     GetComponent<SpriteRenderer>().sprite = defaultSprite;
+    // }
 
-    public void Moving()
-    {
-        audioManager.Play(audioManager.select);
-        inMotion = true;
-    }
-    public void Stopped()
-    {
-        inMotion = false;
-        gameObject.transform.position = snapPoint;
-        if (assignedUnit != null)
-        {
-            if (assignedUnit.GetComponent<ContainmentUnit>() != null)
-            {
-                snapPoint = assignedUnit.GetComponent<ContainmentUnit>().GetEmpSnap();
-                audioManager.Play(audioManager.lockin);
-                //assignedUnit.GetComponent<ContainmentUnit>().mortem.Assign(this);
-                gameObject.transform.position = snapPoint;
-            }
-            else if (assignedUnit.GetComponent<TrainingStation>() != null)
-            {
-                snapPoint = assignedUnit.GetComponent<TrainingStation>().snapPoint;
-                audioManager.Play(audioManager.lockin);
-                assignedUnit.GetComponent<TrainingStation>().employee = this;
-                gameObject.transform.position = snapPoint;
-            }
-            else if (assignedUnit.GetComponent<HealthStation>() != null)
-            {
-                snapPoint = assignedUnit.GetComponent<HealthStation>().snapPoint;
-                audioManager.Play(audioManager.lockin);
-                assignedUnit.GetComponent<HealthStation>().employee = this;
-                gameObject.transform.position = snapPoint;
-            }
-        }
-        else
-        {
-            ResetSnap();
-        }
-    }
+    // public void Moving()
+    // {
+    //     audioManager.Play(audioManager.select);
+    //     inMotion = true;
+    // }
+    // public void Stopped()
+    // {
+    //     inMotion = false;
+    //     gameObject.transform.position = snapPoint;
+    //     if (assignedUnit != null)
+    //     {
+    //         if (assignedUnit.GetComponent<ContainmentUnit>() != null)
+    //         {
+    //             snapPoint = assignedUnit.GetComponent<ContainmentUnit>().GetEmpSnap();
+    //             audioManager.Play(audioManager.lockin);
+    //             //assignedUnit.GetComponent<ContainmentUnit>().mortem.Assign(this);
+    //             gameObject.transform.position = snapPoint;
+    //         }
+    //         else if (assignedUnit.GetComponent<TrainingStation>() != null)
+    //         {
+    //             snapPoint = assignedUnit.GetComponent<TrainingStation>().snapPoint;
+    //             audioManager.Play(audioManager.lockin);
+    //             assignedUnit.GetComponent<TrainingStation>().employee = this;
+    //             gameObject.transform.position = snapPoint;
+    //         }
+    //         else if (assignedUnit.GetComponent<HealthStation>() != null)
+    //         {
+    //             snapPoint = assignedUnit.GetComponent<HealthStation>().snapPoint;
+    //             audioManager.Play(audioManager.lockin);
+    //             assignedUnit.GetComponent<HealthStation>().employee = this;
+    //             gameObject.transform.position = snapPoint;
+    //         }
+    //     }
+    //     else
+    //     {
+    //         ResetSnap();
+    //     }
+    // }
 
     
-    public void ResetSnap()
-    {
-        snapPoint = startingPoint;
-        if (!inMotion)
-        {
-            gameObject.transform.position = snapPoint;
-        }
-    }
+    // public void ResetSnap()
+    // {
+    //     snapPoint = startingPoint;
+    //     if (!inMotion)
+    //     {
+    //         gameObject.transform.position = snapPoint;
+    //     }
+    // }
     public void PassTag(string tag, float num = 0)
     {
         switch (tag)
@@ -133,6 +133,9 @@ public class Employee : MonoBehaviour
                 break;
             case "adjustheart":
                 AdjustHeart(num);
+                break;
+            case "die":
+                Die();
                 break;
         }
     }
@@ -182,15 +185,15 @@ public class Employee : MonoBehaviour
         body += healthChange;
         body = Mathf.Clamp(body, 0, maxBody);
 
-        physHealthbar.SetHealth(body);
+        // physHealthbar.SetHealth(body);
 
         if (body <= 0)
         {
             isDead = true;
             GetComponent<SpriteRenderer>().sprite = deadSprite;
-            physHealthbar.gameObject.SetActive(false);
-            mentHealthbar.gameObject.SetActive(false);
-            rank.gameObject.SetActive(false);
+            // physHealthbar.gameObject.SetActive(false);
+            // mentHealthbar.gameObject.SetActive(false);
+            // rank.gameObject.SetActive(false);
         }
     }
     public void SetMentHealth(float healthChange)
@@ -202,7 +205,7 @@ public class Employee : MonoBehaviour
         mind += healthChange;
         mind = Mathf.Clamp(mind, 0, maxMind);
 
-        mentHealthbar.SetHealth(mind);
+        // mentHealthbar.SetHealth(mind);
 
         if (mind <= 0)
         {
@@ -210,11 +213,17 @@ public class Employee : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = stressedSprite;
         }
     }
+
+    public void Die()
+    {
+        GameManager.Instance.employeeRoster.Remove(this);
+        Destroy(gameObject);
+    }
     public void FullRestore()
     {
         body = maxBody;
         mind = maxMind;
-        physHealthbar.SetHealth(body);
-        mentHealthbar.SetHealth(mind);
+        // physHealthbar.SetHealth(body);
+        // mentHealthbar.SetHealth(mind);
     }
 }

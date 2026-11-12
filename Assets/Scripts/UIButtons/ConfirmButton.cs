@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class ConfirmButton : MonoBehaviour
 {
-    private AudioManager audioManager;
-    private void Awake()
-    {
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Confirm()
     {
@@ -15,7 +10,7 @@ public class ConfirmButton : MonoBehaviour
         // {
         //     mortem.tick();
         // }
-        audioManager.Play(audioManager.select);
+        AudioManager.Instance.Play(AudioManager.Instance.startday);
         Employee[] employees = FindObjectsByType(typeof(Employee), FindObjectsSortMode.InstanceID) as Employee[];
         foreach (Employee employee in employees)
         {

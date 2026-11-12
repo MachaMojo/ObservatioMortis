@@ -20,8 +20,4 @@ public class HealthbarUI : MonoBehaviour
             healthbar.sizeDelta = new Vector2(newWidth, Height);
         }
     }
-    public void Goldify()
-    {
-        //healthbar.GetComponent<Image>().color = Color.gold;
-    }
 }

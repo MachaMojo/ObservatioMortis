@@ -11,7 +11,7 @@ public class InitializerTraining : MonoBehaviour
         if (GameManager.Instance.currentEmployee != null)
         {
             employee = GameManager.Instance.currentEmployee;
-            employee.gameObject.GetComponent<SpriteRenderer>().sprite = employee.defaultSprite;
+            employee.gameObject.GetComponent<SpriteRenderer>().sprite = employee.unitSprite;
             employee.gameObject.transform.position = employeePoint.transform.position;
             unit.PlayDialogue();
         }

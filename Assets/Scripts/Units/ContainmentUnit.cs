@@ -43,7 +43,7 @@ public class ContainmentUnit : UnitBase
     {
         if (other.gameObject.tag == "Employee" && employee == null)
         {
-            other.gameObject.GetComponent<Employee>().snapPoint = empSnapPoint;
+            // other.gameObject.GetComponent<Employee>().snapPoint = empSnapPoint;
             employee = other.gameObject;
             other.gameObject.GetComponent<Employee>().assignedUnit = gameObject;
         }
